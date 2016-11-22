@@ -1,0 +1,16 @@
+listLength=$(ls 1 | grep NodeProbability | wc -l);
+ostatniFolder=200;
+
+for ((i=1;i<=listLength;i++)); do
+  file=$(ls 1 | grep NodeProbability | head -n ${i} | tail -1);
+  printf "{" >> filtered/${file};
+  for ((j=1;j<${ostatniFolder};j++)); do
+    echo "progress: ${i}/${listLength} - ${j}/$((${ostatniFolder}-1))...";
+    cat ${j}/${file} >> filtered/${file};
+  done;
+  echo "ending file: ${i}/${listLength}...";
+  sed '$ s/.$//' ${ostatniFolder}/${file} >> filtered/${file};
+  printf "}" >> filtered/${file};
+done;
+
+

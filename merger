@@ -1,0 +1,11 @@
+
+fileLength=$(wc -l file | cut -f1 -d' ');
+for((j=1;j<=5;j++)); do
+for((i=1;i<=${fileLength};i++)); do 
+echo "${j}/5 - ${i}/${fileLength}";
+fileName=$(cat file | head -n ${i} | tail -1);
+cat TRANS${j}/${fileName} >> TRANS/${fileName};
+done;
+done;
+
+

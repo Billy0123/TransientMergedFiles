@@ -1,0 +1,14 @@
+printf "merging ODF1 files...";
+for ((i=1;i<=200;i++)); do 
+  cat ${i}/ODF1TransJava.txt >> ODF1TransJava.txt
+done;
+printf " done\n";
+
+printf "launch of transientFilesODF2...";
+time java -jar transientFilesODF2.jar
+printf " done\n";
+
+printf "moving result file to filtered/ and removing merged data...";
+mv ODF2TransJava* filtered/
+rm ODF1TransJava.txt;
+printf " done\n";
